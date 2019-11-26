@@ -5,6 +5,8 @@ from keras.layers import Input, Dense, Embedding, SpatialDropout1D, add, concate
 from keras.layers import CuDNNLSTM, Bidirectional, GlobalMaxPooling1D, GlobalAveragePooling1D
 from keras.preprocessing import text, sequence
 from gensim.models import KeyedVectors
+import time
+from tensorflow.keras.callbacks import TensorBoard
 
 # This currently uses only the glove word embedding file
 EMBEDDING_FILES = [
@@ -92,6 +94,10 @@ embedding_matrix = np.concatenate(
 print("Finished setting up weights")
 
 print("Training the models")
+
+LOGNAME = "model-{}Epochs-{}".format(EPOCHS, int(time.time()))
+tensorboard = TensorBoard(log_dir='logs\{}'.format(LOGNAME))
+
 model = build_model(embedding_matrix, y_aux_train.shape[-1])
 model.fit(
     x_train,
@@ -99,7 +105,8 @@ model.fit(
     batch_size=BATCH_SIZE,
     epochs=EPOCHS,
     verbose=2,
-    sample_weight=[sample_weights.values, np.ones_like(sample_weights)]
+    sample_weight=[sample_weights.values, np.ones_like(sample_weights)],
+    callbacks=[tensorboard]
 )
 
 print("Finished training the models")
