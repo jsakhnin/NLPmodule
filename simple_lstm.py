@@ -91,27 +91,20 @@ embedding_matrix = np.concatenate(
     [build_matrix(tokenizer.word_index, f) for f in EMBEDDING_FILES], axis=-1)
 print("Finished setting up weights")
 
-checkpoint_predictions = []
-weights = []
-
 print("Training the models")
-for model_idx in range(NUM_MODELS):
-    model = build_model(embedding_matrix, y_aux_train.shape[-1])
-    for global_epoch in range(EPOCHS):
-        model.fit(
-            x_train,
-            [y_train, y_aux_train],
-            batch_size=BATCH_SIZE,
-            epochs=1,
-            verbose=2,
-            sample_weight=[sample_weights.values, np.ones_like(sample_weights)]
-        )
-        checkpoint_predictions.append(model.predict(x_test, batch_size=2048)[0].flatten())
-        weights.append(2 ** global_epoch)
+model = build_model(embedding_matrix, y_aux_train.shape[-1])
+model.fit(
+    x_train,
+    [y_train, y_aux_train],
+    batch_size=BATCH_SIZE,
+    epochs=EPOCHS,
+    verbose=2,
+    sample_weight=[sample_weights.values, np.ones_like(sample_weights)]
+)
 
 print("Finished training the models")
 
-predictions = np.average(checkpoint_predictions, weights=weights, axis=0)
+predictions = model.predict(x_test, batch_size=2048)[0].flatten()
 
 submission = pd.DataFrame.from_dict({
     'id': test_df.id,
