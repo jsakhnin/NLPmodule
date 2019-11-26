@@ -9,6 +9,7 @@ import time
 from tensorflow.keras.callbacks import TensorBoard
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
+from keras.models import load_model
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -123,10 +124,12 @@ model.fit(
     [y_train, y_aux_train],
     batch_size=BATCH_SIZE,
     epochs=EPOCHS,
+    validation_split=0.2,
     verbose=2,
     sample_weight=[sample_weights.values, np.ones_like(sample_weights)],
     callbacks=[tensorboard]
 )
+model.save("simple_lstm_model.h5")
 
 print("Finished training the models")
 
@@ -142,3 +145,9 @@ submission = pd.DataFrame.from_dict({
     'prediction': predictions
 })
 submission.to_csv('submission.csv', index=False)
+
+model2 = load_model("simple_lstm_model.h5")
+predictions = model2.predict(x_test, batch_size=2048)[0].flatten()
+predictions = np.where(predictions >= 0.5, True, False)
+acc = accuracy_score(y_test, predictions)
+print(f"Classification Accuracy on loaded model = {acc}")
