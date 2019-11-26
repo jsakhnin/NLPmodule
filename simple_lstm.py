@@ -16,11 +16,10 @@ warnings.filterwarnings('ignore')
 EMBEDDING_FILES = [
     '../glove.840B.300d.gensim'
 ]
-NUM_MODELS = 2
 BATCH_SIZE = 512
 LSTM_UNITS = 128
 DENSE_HIDDEN_UNITS = 4 * LSTM_UNITS
-EPOCHS = 4
+EPOCHS = 5
 MAX_LEN = 220
 IDENTITY_COLUMNS = [
     'male', 'female', 'homosexual_gay_or_lesbian', 'christian', 'jewish',
@@ -30,6 +29,7 @@ AUX_COLUMNS = ['target', 'severe_toxicity', 'obscene', 'identity_attack', 'insul
 TEXT_COLUMN = 'comment_text'
 TARGET_COLUMN = 'target'
 CHARS_TO_REMOVE = '!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n“”’\'∞θ÷α•à−β∅³π‘₹´°£€\×™√²—'
+seed = 42
 
 def build_matrix(word_index, path):
     embedding_index = KeyedVectors.load(path, mmap='r')
@@ -64,21 +64,33 @@ def build_model(embedding_matrix, num_aux_targets):
     return model
 
 print("Loading data")
-train_df = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/train.csv', nrows=1000)
-test_df  = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/test.csv',  nrows=1000)
+df = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/train.csv', nrows=1000)
 print("Loading data complete")
 
 #for column in IDENTITY_COLUMNS + [TARGET_COLUMN]:
-#    train_df[column] = np.where(train_df[column] >= 0.5, True, False)
+#    df[column] = np.where(df[column] >= 0.5, True, False)
 
 print("Set up training and test data")
-x_train = train_df[TEXT_COLUMN].astype(str)
-y_train = train_df[TARGET_COLUMN].values
-y_aux_train = train_df[AUX_COLUMNS].values
-x_test = test_df[TEXT_COLUMN].astype(str)
+#comments   = df[TEXT_COLUMN].astype(str)
+#labels     = df[TARGET_COLUMN].values
+#aux_labels = df[AUX_COLUMNS].values
+
+#x_train, x_test, y_train, y_test, y_aux_train, y_aux_test = train_test_split(comments, labels, aux_labels,
+#                                                                             train_size=0.8, random_state=seed,
+#                                                                             shuffle=True)
+
+train, test = train_test_split(df, train_size=0.8, random_state=seed, shuffle=True)
+
+x_train     = train[TEXT_COLUMN].astype(str)
+x_test      = test[TEXT_COLUMN].astype(str)
+y_train     = train[TARGET_COLUMN].values
+y_test      = test[TARGET_COLUMN].values
+y_aux_train = train[AUX_COLUMNS].values
+y_aux_test  = test[AUX_COLUMNS].values
 
 for column in IDENTITY_COLUMNS + [TARGET_COLUMN]:
-    train_df[column] = np.where(train_df[column] >= 0.5, True, False)
+    train[column] = np.where(train[column] >= 0.5, True, False)
+    test[column]  = np.where(test[column] >= 0.5, True, False)
 
 tokenizer = text.Tokenizer(filters=CHARS_TO_REMOVE, lower=False)
 tokenizer.fit_on_texts(list(x_train) + list(x_test))
@@ -91,9 +103,9 @@ print("Finished setting up data")
 
 print("Setting up initial weights for model")
 sample_weights = np.ones(len(x_train), dtype=np.float32)
-sample_weights += train_df[IDENTITY_COLUMNS].sum(axis=1)
-sample_weights += train_df[TARGET_COLUMN] * (~train_df[IDENTITY_COLUMNS]).sum(axis=1)
-sample_weights += (~train_df[TARGET_COLUMN]) * train_df[IDENTITY_COLUMNS].sum(axis=1) * 5
+sample_weights += train[IDENTITY_COLUMNS].sum(axis=1)
+sample_weights += train[TARGET_COLUMN] * (~train[IDENTITY_COLUMNS]).sum(axis=1)
+sample_weights += (~train[TARGET_COLUMN]) * train[IDENTITY_COLUMNS].sum(axis=1) * 5
 sample_weights /= sample_weights.mean()
 
 embedding_matrix = np.concatenate(
@@ -118,15 +130,15 @@ model.fit(
 
 print("Finished training the models")
 
-predictions = model.predict(x_train, batch_size=2048)[0].flatten()
+predictions = model.predict(x_test, batch_size=2048)[0].flatten()
 predictions = np.where(predictions >= 0.5, True, False)
-y_train     = np.where(y_train >= 0.5, True, False)
+y_test      = np.where(y_test >= 0.5, True, False)
 
-acc = accuracy_score(y_train, predictions)
+acc = accuracy_score(y_test, predictions)
 print(f"Classification Accuracy = {acc}")
 
 submission = pd.DataFrame.from_dict({
-    'id': test_df.id,
+    'y_test': y_test,
     'prediction': predictions
 })
 submission.to_csv('submission.csv', index=False)
