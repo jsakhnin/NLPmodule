@@ -6,9 +6,9 @@ from keras.layers import CuDNNLSTM, Bidirectional, GlobalMaxPooling1D, GlobalAve
 from keras.preprocessing import text, sequence
 from gensim.models import KeyedVectors
 
-
+# This currently uses only the glove word embedding file
 EMBEDDING_FILES = [
-    'https://media.githubusercontent.com/media/szentimh/word-embeddings/master/glove.840B.300d.gensim'
+    '../glove.840B.300d.gensim'
 ]
 NUM_MODELS = 2
 BATCH_SIZE = 512
@@ -57,10 +57,12 @@ def build_model(embedding_matrix, num_aux_targets):
 
     return model
 
-
+print("Loading data")
 train_df = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/train.csv', nrows=1000)
 test_df  = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/test.csv',  nrows=1000)
+print("Loading data complete")
 
+print("Set up training and test data")
 x_train = train_df[TEXT_COLUMN].astype(str)
 y_train = train_df[TARGET_COLUMN].values
 y_aux_train = train_df[AUX_COLUMNS].values
@@ -76,7 +78,9 @@ x_train = tokenizer.texts_to_sequences(x_train)
 x_test = tokenizer.texts_to_sequences(x_test)
 x_train = sequence.pad_sequences(x_train, maxlen=MAX_LEN)
 x_test = sequence.pad_sequences(x_test, maxlen=MAX_LEN)
+print("Finished setting up data")
 
+print("Setting up initial weights for model")
 sample_weights = np.ones(len(x_train), dtype=np.float32)
 sample_weights += train_df[IDENTITY_COLUMNS].sum(axis=1)
 sample_weights += train_df[TARGET_COLUMN] * (~train_df[IDENTITY_COLUMNS]).sum(axis=1)
@@ -85,10 +89,12 @@ sample_weights /= sample_weights.mean()
 
 embedding_matrix = np.concatenate(
     [build_matrix(tokenizer.word_index, f) for f in EMBEDDING_FILES], axis=-1)
+print("Finished setting up weights")
 
 checkpoint_predictions = []
 weights = []
 
+print("Training the models")
 for model_idx in range(NUM_MODELS):
     model = build_model(embedding_matrix, y_aux_train.shape[-1])
     for global_epoch in range(EPOCHS):
@@ -102,6 +108,8 @@ for model_idx in range(NUM_MODELS):
         )
         checkpoint_predictions.append(model.predict(x_test, batch_size=2048)[0].flatten())
         weights.append(2 ** global_epoch)
+
+print("Finished training the models")
 
 predictions = np.average(checkpoint_predictions, weights=weights, axis=0)
 
