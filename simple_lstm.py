@@ -7,6 +7,10 @@ from keras.preprocessing import text, sequence
 from gensim.models import KeyedVectors
 import time
 from tensorflow.keras.callbacks import TensorBoard
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+import warnings
+warnings.filterwarnings('ignore')
 
 # This currently uses only the glove word embedding file
 EMBEDDING_FILES = [
@@ -64,6 +68,9 @@ train_df = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/Jigsa
 test_df  = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/test.csv',  nrows=1000)
 print("Loading data complete")
 
+#for column in IDENTITY_COLUMNS + [TARGET_COLUMN]:
+#    train_df[column] = np.where(train_df[column] >= 0.5, True, False)
+
 print("Set up training and test data")
 x_train = train_df[TEXT_COLUMN].astype(str)
 y_train = train_df[TARGET_COLUMN].values
@@ -111,7 +118,12 @@ model.fit(
 
 print("Finished training the models")
 
-predictions = model.predict(x_test, batch_size=2048)[0].flatten()
+predictions = model.predict(x_train, batch_size=2048)[0].flatten()
+predictions = np.where(predictions >= 0.5, True, False)
+y_train     = np.where(y_train >= 0.5, True, False)
+
+acc = accuracy_score(y_train, predictions)
+print(f"Classification Accuracy = {acc}")
 
 submission = pd.DataFrame.from_dict({
     'id': test_df.id,
