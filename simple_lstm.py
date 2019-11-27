@@ -7,7 +7,7 @@ from keras.preprocessing import text, sequence
 from gensim.models import KeyedVectors
 import time
 from tensorflow.keras.callbacks import TensorBoard
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, recall_score, precision_score, classification_report
 from sklearn.model_selection import train_test_split
 from keras.models import load_model
 import warnings
@@ -20,7 +20,7 @@ EMBEDDING_FILES = [
 BATCH_SIZE = 512
 LSTM_UNITS = 128
 DENSE_HIDDEN_UNITS = 4 * LSTM_UNITS
-EPOCHS = 5
+EPOCHS = 6
 MAX_LEN = 220
 IDENTITY_COLUMNS = [
     'male', 'female', 'homosexual_gay_or_lesbian', 'christian', 'jewish',
@@ -60,12 +60,12 @@ def build_model(embedding_matrix, num_aux_targets):
     aux_result = Dense(num_aux_targets, activation='sigmoid')(hidden)
     
     model = Model(inputs=words, outputs=[result, aux_result])
-    model.compile(loss='binary_crossentropy', optimizer='adam')
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     return model
 
 print("Loading data")
-df = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/train.csv', nrows=1000)
+df = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/train.csv') #, nrows=1000)
 print("Loading data complete")
 
 #for column in IDENTITY_COLUMNS + [TARGET_COLUMN]:
@@ -116,7 +116,8 @@ print("Finished setting up weights")
 print("Training the models")
 
 LOGNAME = "model-{}Epochs-{}".format(EPOCHS, int(time.time()))
-tensorboard = TensorBoard(log_dir='logs\{}'.format(LOGNAME))
+#tensorboard = TensorBoard(log_dir='logs\{}'.format(LOGNAME))
+tensorboard = TensorBoard(log_dir='logs')
 
 model = build_model(embedding_matrix, y_aux_train.shape[-1])
 model.fit(
@@ -129,7 +130,7 @@ model.fit(
     sample_weight=[sample_weights.values, np.ones_like(sample_weights)],
     callbacks=[tensorboard]
 )
-model.save("simple_lstm_model.h5")
+model.save(f"simple_lstm_model_{EPOCHS}Epochs.h5")
 
 print("Finished training the models")
 
@@ -137,8 +138,14 @@ predictions = model.predict(x_test, batch_size=2048)[0].flatten()
 predictions = np.where(predictions >= 0.5, True, False)
 y_test      = np.where(y_test >= 0.5, True, False)
 
-acc = accuracy_score(y_test, predictions)
+acc    = accuracy_score(y_test, predictions)
+recall = recall_score(y_test, predictions)
+pres   = precision_score(y_test, predictions)
 print(f"Classification Accuracy = {acc}")
+print(f"Classification Recall = {recall}")
+print(f"Classification Precision = {pres}")
+print(f"Classification Report:")
+print(classification_report(y_test, predictions))
 
 submission = pd.DataFrame.from_dict({
     'y_test': y_test,
@@ -146,8 +153,8 @@ submission = pd.DataFrame.from_dict({
 })
 submission.to_csv('submission.csv', index=False)
 
-model2 = load_model("simple_lstm_model.h5")
-predictions = model2.predict(x_test, batch_size=2048)[0].flatten()
-predictions = np.where(predictions >= 0.5, True, False)
-acc = accuracy_score(y_test, predictions)
-print(f"Classification Accuracy on loaded model = {acc}")
+#model2 = load_model(f"simple_lstm_model_{EPOCHS}Epochs.h5")
+#predictions = model2.predict(x_test, batch_size=2048)[0].flatten()
+#predictions = np.where(predictions >= 0.5, True, False)
+#acc = accuracy_score(y_test, predictions)
+#print(f"Classification Accuracy on loaded model = {acc}")
