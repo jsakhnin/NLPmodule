@@ -65,7 +65,7 @@ def build_model(embedding_matrix, num_aux_targets):
     return model
 
 print("Loading data")
-df = pd.read_csv('https://media.githubusercontent.com/media/jsakhnin/JigsawNLP_data/master/train.csv') #, nrows=1000)
+df = pd.read_csv('../NLPData/train_clean.csv') #, nrows=1000)
 print("Loading data complete")
 
 #for column in IDENTITY_COLUMNS + [TARGET_COLUMN]:
@@ -130,7 +130,7 @@ model.fit(
     sample_weight=[sample_weights.values, np.ones_like(sample_weights)],
     callbacks=[tensorboard]
 )
-model.save(f"simple_lstm_model_{EPOCHS}Epochs.h5")
+model.save(f"simple_lstm_model_{EPOCHS}Epochs_cleaned_data2.h5")
 
 print("Finished training the models")
 

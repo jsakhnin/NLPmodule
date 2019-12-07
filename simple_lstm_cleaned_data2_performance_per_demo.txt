@@ -1,0 +1,308 @@
+Loading data
+Loading data complete
+Set up training and test data
+Finished setting up data
+Load model and test on test samples
+Classification Accuracy = 0.944760717501212
+Classification Recall = 0.6939610702249123
+Classification Precision = 0.6463484945547726
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.97      0.97      0.97    331897
+        True       0.65      0.69      0.67     29078
+
+    accuracy                           0.94    360975
+   macro avg       0.81      0.83      0.82    360975
+weighted avg       0.95      0.94      0.95    360975
+
+Finished loading model and testing on test samples
+Start looking at performance for different demographics
+*****************************************************************
+Test performance on comments label as male
+*****************************************************************
+              id  target  ... y_test  predictions
+1535669  6001291   False  ...  False        False
+1285489  5685297   False  ...  False        False
+1139519  5508397   False  ...  False        False
+1326016  5735963   False  ...  False        False
+253993    554434   False  ...  False        False
+...          ...     ...  ...    ...          ...
+918595   5243602   False  ...  False        False
+1274135  5671622   False  ...  False        False
+1471334  5920119   False  ...  False        False
+261310    563174   False  ...  False        False
+1463236  5909564   False  ...  False        False
+
+[8900 rows x 47 columns]
+Classification Accuracy = 0.8930337078651686
+Classification Recall = 0.4224137931034483
+Classification Precision = 0.7989130434782609
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.90      0.98      0.94      7508
+        True       0.80      0.42      0.55      1392
+
+    accuracy                           0.89      8900
+   macro avg       0.85      0.70      0.75      8900
+weighted avg       0.89      0.89      0.88      8900
+
+
+
+*****************************************************************
+Test performance on comments label as female
+*****************************************************************
+              id  target  ... y_test  predictions
+1025342  5370885   False  ...  False        False
+1535669  6001291   False  ...  False        False
+1285489  5685297   False  ...  False        False
+1326016  5735963   False  ...  False        False
+778910   5073725   False  ...  False        False
+...          ...     ...  ...    ...          ...
+1471334  5920119   False  ...  False        False
+957373   5289649   False  ...  False        False
+261310    563174   False  ...  False        False
+294591    602835    True  ...   True         True
+1463236  5909564   False  ...  False        False
+
+[10723 rows x 47 columns]
+Classification Accuracy = 0.9049706238925673
+Classification Recall = 0.40553306342780027
+Classification Precision = 0.8132611637347767
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.91      0.99      0.95      9241
+        True       0.81      0.41      0.54      1482
+
+    accuracy                           0.90     10723
+   macro avg       0.86      0.70      0.74     10723
+weighted avg       0.90      0.90      0.89     10723
+
+
+
+*****************************************************************
+Test performance on comments label as homosexual_gay_or_lesbian
+*****************************************************************
+              id  target  ... y_test  predictions
+1673507  6173476   False  ...  False        False
+318605    632698    True  ...   True         True
+90881     353730    True  ...   True         True
+298459    607755   False  ...  False        False
+1701506  6208290   False  ...  False        False
+...          ...     ...  ...    ...          ...
+1696315  6201814   False  ...  False        False
+1592896  6070883   False  ...  False        False
+985101   5322931   False  ...  False        False
+1567559  6039754    True  ...   True         True
+1745157  6261442   False  ...  False        False
+
+[2249 rows x 47 columns]
+Classification Accuracy = 0.7941307247665629
+Classification Recall = 0.32701421800947866
+Classification Precision = 0.8483606557377049
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.79      0.98      0.87      1616
+        True       0.85      0.33      0.47       633
+
+    accuracy                           0.79      2249
+   macro avg       0.82      0.65      0.67      2249
+weighted avg       0.80      0.79      0.76      2249
+
+
+
+*****************************************************************
+Test performance on comments label as christian
+*****************************************************************
+              id  target  ... y_test  predictions
+1459209  5904729   False  ...  False        False
+1669997  6169026   False  ...  False        False
+1135850  5503709   False  ...  False        False
+588232    962482    True  ...   True        False
+405666    739175   False  ...  False        False
+...          ...     ...  ...    ...          ...
+652963   1041403   False  ...  False        False
+1570351  6043338   False  ...  False        False
+996522   5336385   False  ...  False        False
+261310    563174   False  ...  False        False
+584509    957865   False  ...  False        False
+
+[8041 rows x 47 columns]
+Classification Accuracy = 0.9242631513493347
+Classification Recall = 0.2882882882882883
+Classification Precision = 0.8
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.93      0.99      0.96      7264
+        True       0.80      0.29      0.42       777
+
+    accuracy                           0.92      8041
+   macro avg       0.86      0.64      0.69      8041
+weighted avg       0.92      0.92      0.91      8041
+
+
+
+*****************************************************************
+Test performance on comments label as jewish
+*****************************************************************
+              id  target  ... y_test  predictions
+419218    756192    True  ...   True        False
+190738    474441   False  ...  False        False
+798495   5097916   False  ...  False        False
+1411613  5844145   False  ...  False        False
+1206085  5589786   False  ...  False        False
+...          ...     ...  ...    ...          ...
+949712   5280491   False  ...  False        False
+429547    769471   False  ...  False        False
+978745   5315247   False  ...  False        False
+878078   5194973   False  ...  False        False
+1570351  6043338   False  ...  False        False
+
+[1520 rows x 47 columns]
+Classification Accuracy = 0.8822368421052632
+Classification Recall = 0.32098765432098764
+Classification Precision = 0.8478260869565217
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.88      0.99      0.93      1277
+        True       0.85      0.32      0.47       243
+
+    accuracy                           0.88      1520
+   macro avg       0.87      0.66      0.70      1520
+weighted avg       0.88      0.88      0.86      1520
+
+
+
+*****************************************************************
+Test performance on comments label as muslim
+*****************************************************************
+              id  target  ... y_test  predictions
+1294792  5697237   False  ...  False        False
+1782567  6306396    True  ...   True        False
+1206085  5589786   False  ...  False        False
+830141   5136709   False  ...  False        False
+1020507  5365254    True  ...   True        False
+...          ...     ...  ...    ...          ...
+1471659  5920544    True  ...   True         True
+877580   5194401   False  ...  False        False
+996522   5336385   False  ...  False        False
+897760   5218219    True  ...   True         True
+1778204  6301072   False  ...  False        False
+
+[4208 rows x 47 columns]
+Classification Accuracy = 0.8262832699619772
+Classification Recall = 0.3216132368148914
+Classification Precision = 0.805699481865285
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.83      0.98      0.90      3241
+        True       0.81      0.32      0.46       967
+
+    accuracy                           0.83      4208
+   macro avg       0.82      0.65      0.68      4208
+weighted avg       0.82      0.83      0.80      4208
+
+
+
+*****************************************************************
+Test performance on comments label as black
+*****************************************************************
+              id  target  ... y_test  predictions
+1406489  5837499    True  ...   True        False
+1372334  5795245   False  ...  False        False
+1782567  6306396    True  ...   True        False
+1350164  5765570   False  ...  False        False
+1122571  5487622    True  ...   True         True
+...          ...     ...  ...    ...          ...
+1694206  6199182   False  ...  False        False
+618773    999480   False  ...  False        False
+1171283  5547333   False  ...  False        False
+299618    609158   False  ...  False        False
+1170153  5546050   False  ...  False        False
+
+[2954 rows x 47 columns]
+Classification Accuracy = 0.7738659444820583
+Classification Recall = 0.39183673469387753
+Classification Precision = 0.8421052631578947
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.76      0.96      0.85      1974
+        True       0.84      0.39      0.53       980
+
+    accuracy                           0.77      2954
+   macro avg       0.80      0.68      0.69      2954
+weighted avg       0.79      0.77      0.75      2954
+
+
+
+*****************************************************************
+Test performance on comments label as white
+*****************************************************************
+              id  target  ... y_test  predictions
+419218    756192    True  ...   True        False
+1139519  5508397   False  ...  False        False
+168311    447851   False  ...  False        False
+1406489  5837499    True  ...   True        False
+1681709  6183411   False  ...  False        False
+...          ...     ...  ...    ...          ...
+618773    999480   False  ...  False        False
+152296    428418   False  ...  False        False
+901900   5223109    True  ...   True         True
+1375930  5799486    True  ...   True         True
+1378247  5802234    True  ...   True        False
+
+[4916 rows x 47 columns]
+Classification Accuracy = 0.8079739625711961
+Classification Recall = 0.3988480921526278
+Classification Precision = 0.8355957767722474
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.80      0.97      0.88      3527
+        True       0.84      0.40      0.54      1389
+
+    accuracy                           0.81      4916
+   macro avg       0.82      0.68      0.71      4916
+weighted avg       0.81      0.81      0.78      4916
+
+
+
+*****************************************************************
+Test performance on comments label as psychiatric_or_mental_illness
+*****************************************************************
+              id  target  ... y_test  predictions
+1131348  5498390    True  ...   True         True
+203972    491398   False  ...  False        False
+733665   5019337   False  ...  False        False
+159965    437663   False  ...  False        False
+479425    831930   False  ...  False        False
+...          ...     ...  ...    ...          ...
+965406   5299056   False  ...  False        False
+52875     306858    True  ...   True         True
+1601546  6081705   False  ...  False        False
+132375    403892   False  ...  False        False
+1000250  5340864   False  ...  False         True
+
+[1043 rows x 47 columns]
+Classification Accuracy = 0.862895493767977
+Classification Recall = 0.5756302521008403
+Classification Precision = 0.7653631284916201
+Classification Report:
+              precision    recall  f1-score   support
+
+       False       0.88      0.95      0.91       805
+        True       0.77      0.58      0.66       238
+
+    accuracy                           0.86      1043
+   macro avg       0.82      0.76      0.79      1043
+weighted avg       0.86      0.86      0.86      1043
+
+
+

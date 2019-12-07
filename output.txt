@@ -1,0 +1,111 @@
+Loading data
+Loading data complete
+Set up training and test data
+Finished setting up data
+Setting up initial weights for model
+Finished setting up weights
+Training the models
+Train on 1155119 samples, validate on 288780 samples
+Epoch 1/50
+ - 355s - loss: 0.5410 - dense_3_loss: 0.4307 - dense_4_loss: 0.1103 - val_loss: 0.5152 - val_dense_3_loss: 0.4115 - val_dense_4_loss: 0.1037
+Epoch 2/50
+ - 341s - loss: 0.5170 - dense_3_loss: 0.4130 - dense_4_loss: 0.1041 - val_loss: 0.5110 - val_dense_3_loss: 0.4083 - val_dense_4_loss: 0.1027
+Epoch 3/50
+ - 327s - loss: 0.5106 - dense_3_loss: 0.4077 - dense_4_loss: 0.1028 - val_loss: 0.5081 - val_dense_3_loss: 0.4060 - val_dense_4_loss: 0.1021
+Epoch 4/50
+ - 327s - loss: 0.5061 - dense_3_loss: 0.4040 - dense_4_loss: 0.1021 - val_loss: 0.5071 - val_dense_3_loss: 0.4053 - val_dense_4_loss: 0.1018
+Epoch 5/50
+ - 327s - loss: 0.5024 - dense_3_loss: 0.4008 - dense_4_loss: 0.1016 - val_loss: 0.5069 - val_dense_3_loss: 0.4052 - val_dense_4_loss: 0.1017
+Epoch 6/50
+ - 327s - loss: 0.4989 - dense_3_loss: 0.3979 - dense_4_loss: 0.1011 - val_loss: 0.5067 - val_dense_3_loss: 0.4050 - val_dense_4_loss: 0.1017
+Epoch 7/50
+ - 327s - loss: 0.4960 - dense_3_loss: 0.3953 - dense_4_loss: 0.1007 - val_loss: 0.5098 - val_dense_3_loss: 0.4080 - val_dense_4_loss: 0.1018
+Epoch 8/50
+ - 327s - loss: 0.4932 - dense_3_loss: 0.3928 - dense_4_loss: 0.1004 - val_loss: 0.5081 - val_dense_3_loss: 0.4062 - val_dense_4_loss: 0.1019
+Epoch 9/50
+ - 327s - loss: 0.4908 - dense_3_loss: 0.3907 - dense_4_loss: 0.1001 - val_loss: 0.5089 - val_dense_3_loss: 0.4070 - val_dense_4_loss: 0.1019
+Epoch 10/50
+ - 328s - loss: 0.4883 - dense_3_loss: 0.3885 - dense_4_loss: 0.0998 - val_loss: 0.5096 - val_dense_3_loss: 0.4075 - val_dense_4_loss: 0.1020
+Epoch 11/50
+ - 328s - loss: 0.4865 - dense_3_loss: 0.3869 - dense_4_loss: 0.0996 - val_loss: 0.5108 - val_dense_3_loss: 0.4088 - val_dense_4_loss: 0.1020
+Epoch 12/50
+ - 328s - loss: 0.4845 - dense_3_loss: 0.3851 - dense_4_loss: 0.0994 - val_loss: 0.5114 - val_dense_3_loss: 0.4094 - val_dense_4_loss: 0.1020
+Epoch 13/50
+ - 327s - loss: 0.4829 - dense_3_loss: 0.3837 - dense_4_loss: 0.0992 - val_loss: 0.5155 - val_dense_3_loss: 0.4127 - val_dense_4_loss: 0.1028
+Epoch 14/50
+ - 328s - loss: 0.4814 - dense_3_loss: 0.3823 - dense_4_loss: 0.0990 - val_loss: 0.5151 - val_dense_3_loss: 0.4123 - val_dense_4_loss: 0.1028
+Epoch 15/50
+ - 328s - loss: 0.4800 - dense_3_loss: 0.3811 - dense_4_loss: 0.0989 - val_loss: 0.5138 - val_dense_3_loss: 0.4114 - val_dense_4_loss: 0.1025
+Epoch 16/50
+ - 328s - loss: 0.4787 - dense_3_loss: 0.3800 - dense_4_loss: 0.0988 - val_loss: 0.5178 - val_dense_3_loss: 0.4153 - val_dense_4_loss: 0.1025
+Epoch 17/50
+ - 328s - loss: 0.4775 - dense_3_loss: 0.3789 - dense_4_loss: 0.0986 - val_loss: 0.5170 - val_dense_3_loss: 0.4142 - val_dense_4_loss: 0.1028
+Epoch 18/50
+ - 328s - loss: 0.4765 - dense_3_loss: 0.3780 - dense_4_loss: 0.0985 - val_loss: 0.5171 - val_dense_3_loss: 0.4146 - val_dense_4_loss: 0.1025
+Epoch 19/50
+ - 328s - loss: 0.4756 - dense_3_loss: 0.3772 - dense_4_loss: 0.0984 - val_loss: 0.5189 - val_dense_3_loss: 0.4162 - val_dense_4_loss: 0.1027
+Epoch 20/50
+ - 328s - loss: 0.4748 - dense_3_loss: 0.3766 - dense_4_loss: 0.0983 - val_loss: 0.5164 - val_dense_3_loss: 0.4137 - val_dense_4_loss: 0.1027
+Epoch 21/50
+ - 328s - loss: 0.4740 - dense_3_loss: 0.3758 - dense_4_loss: 0.0982 - val_loss: 0.5188 - val_dense_3_loss: 0.4161 - val_dense_4_loss: 0.1027
+Epoch 22/50
+ - 328s - loss: 0.4732 - dense_3_loss: 0.3751 - dense_4_loss: 0.0980 - val_loss: 0.5191 - val_dense_3_loss: 0.4163 - val_dense_4_loss: 0.1028
+Epoch 23/50
+ - 327s - loss: 0.4725 - dense_3_loss: 0.3745 - dense_4_loss: 0.0980 - val_loss: 0.5232 - val_dense_3_loss: 0.4201 - val_dense_4_loss: 0.1031
+Epoch 24/50
+ - 327s - loss: 0.4720 - dense_3_loss: 0.3740 - dense_4_loss: 0.0979 - val_loss: 0.5185 - val_dense_3_loss: 0.4159 - val_dense_4_loss: 0.1026
+Epoch 25/50
+ - 328s - loss: 0.4714 - dense_3_loss: 0.3736 - dense_4_loss: 0.0979 - val_loss: 0.5215 - val_dense_3_loss: 0.4183 - val_dense_4_loss: 0.1032
+Epoch 26/50
+ - 328s - loss: 0.4709 - dense_3_loss: 0.3731 - dense_4_loss: 0.0978 - val_loss: 0.5229 - val_dense_3_loss: 0.4196 - val_dense_4_loss: 0.1033
+Epoch 27/50
+ - 327s - loss: 0.4703 - dense_3_loss: 0.3726 - dense_4_loss: 0.0977 - val_loss: 0.5223 - val_dense_3_loss: 0.4190 - val_dense_4_loss: 0.1033
+Epoch 28/50
+ - 327s - loss: 0.4698 - dense_3_loss: 0.3722 - dense_4_loss: 0.0976 - val_loss: 0.5227 - val_dense_3_loss: 0.4195 - val_dense_4_loss: 0.1032
+Epoch 29/50
+ - 327s - loss: 0.4694 - dense_3_loss: 0.3718 - dense_4_loss: 0.0976 - val_loss: 0.5285 - val_dense_3_loss: 0.4252 - val_dense_4_loss: 0.1033
+Epoch 30/50
+ - 327s - loss: 0.4690 - dense_3_loss: 0.3714 - dense_4_loss: 0.0975 - val_loss: 0.5221 - val_dense_3_loss: 0.4191 - val_dense_4_loss: 0.1030
+Epoch 31/50
+ - 328s - loss: 0.4684 - dense_3_loss: 0.3709 - dense_4_loss: 0.0975 - val_loss: 0.5233 - val_dense_3_loss: 0.4202 - val_dense_4_loss: 0.1032
+Epoch 32/50
+ - 327s - loss: 0.4681 - dense_3_loss: 0.3707 - dense_4_loss: 0.0974 - val_loss: 0.5233 - val_dense_3_loss: 0.4201 - val_dense_4_loss: 0.1032
+Epoch 33/50
+ - 329s - loss: 0.4677 - dense_3_loss: 0.3703 - dense_4_loss: 0.0974 - val_loss: 0.5243 - val_dense_3_loss: 0.4211 - val_dense_4_loss: 0.1032
+Epoch 34/50
+ - 328s - loss: 0.4674 - dense_3_loss: 0.3700 - dense_4_loss: 0.0973 - val_loss: 0.5268 - val_dense_3_loss: 0.4230 - val_dense_4_loss: 0.1038
+Epoch 35/50
+ - 328s - loss: 0.4670 - dense_3_loss: 0.3697 - dense_4_loss: 0.0973 - val_loss: 0.5281 - val_dense_3_loss: 0.4242 - val_dense_4_loss: 0.1039
+Epoch 36/50
+ - 328s - loss: 0.4669 - dense_3_loss: 0.3696 - dense_4_loss: 0.0973 - val_loss: 0.5243 - val_dense_3_loss: 0.4209 - val_dense_4_loss: 0.1033
+Epoch 37/50
+ - 328s - loss: 0.4663 - dense_3_loss: 0.3692 - dense_4_loss: 0.0972 - val_loss: 0.5245 - val_dense_3_loss: 0.4212 - val_dense_4_loss: 0.1034
+Epoch 38/50
+ - 328s - loss: 0.4658 - dense_3_loss: 0.3687 - dense_4_loss: 0.0971 - val_loss: 0.5298 - val_dense_3_loss: 0.4261 - val_dense_4_loss: 0.1036
+Epoch 39/50
+ - 328s - loss: 0.4658 - dense_3_loss: 0.3687 - dense_4_loss: 0.0971 - val_loss: 0.5296 - val_dense_3_loss: 0.4257 - val_dense_4_loss: 0.1039
+Epoch 40/50
+ - 328s - loss: 0.4654 - dense_3_loss: 0.3683 - dense_4_loss: 0.0971 - val_loss: 0.5321 - val_dense_3_loss: 0.4285 - val_dense_4_loss: 0.1036
+Epoch 41/50
+ - 328s - loss: 0.4652 - dense_3_loss: 0.3682 - dense_4_loss: 0.0970 - val_loss: 0.5282 - val_dense_3_loss: 0.4246 - val_dense_4_loss: 0.1036
+Epoch 42/50
+ - 328s - loss: 0.4650 - dense_3_loss: 0.3680 - dense_4_loss: 0.0970 - val_loss: 0.5306 - val_dense_3_loss: 0.4270 - val_dense_4_loss: 0.1036
+Epoch 43/50
+ - 328s - loss: 0.4645 - dense_3_loss: 0.3675 - dense_4_loss: 0.0969 - val_loss: 0.5257 - val_dense_3_loss: 0.4219 - val_dense_4_loss: 0.1038
+Epoch 44/50
+ - 328s - loss: 0.4644 - dense_3_loss: 0.3675 - dense_4_loss: 0.0969 - val_loss: 0.5301 - val_dense_3_loss: 0.4264 - val_dense_4_loss: 0.1038
+Epoch 45/50
+ - 328s - loss: 0.4643 - dense_3_loss: 0.3674 - dense_4_loss: 0.0969 - val_loss: 0.5318 - val_dense_3_loss: 0.4281 - val_dense_4_loss: 0.1037
+Epoch 46/50
+ - 329s - loss: 0.4639 - dense_3_loss: 0.3671 - dense_4_loss: 0.0969 - val_loss: 0.5271 - val_dense_3_loss: 0.4231 - val_dense_4_loss: 0.1040
+Epoch 47/50
+ - 328s - loss: 0.4638 - dense_3_loss: 0.3670 - dense_4_loss: 0.0968 - val_loss: 0.5293 - val_dense_3_loss: 0.4256 - val_dense_4_loss: 0.1038
+Epoch 48/50
+ - 328s - loss: 0.4636 - dense_3_loss: 0.3668 - dense_4_loss: 0.0968 - val_loss: 0.5289 - val_dense_3_loss: 0.4252 - val_dense_4_loss: 0.1037
+Epoch 49/50
+ - 328s - loss: 0.4632 - dense_3_loss: 0.3664 - dense_4_loss: 0.0968 - val_loss: 0.5280 - val_dense_3_loss: 0.4240 - val_dense_4_loss: 0.1040
+Epoch 50/50
+ - 328s - loss: 0.4633 - dense_3_loss: 0.3665 - dense_4_loss: 0.0968 - val_loss: 0.5343 - val_dense_3_loss: 0.4305 - val_dense_4_loss: 0.1039
+Finished training the models
+Classification Accuracy = 0.9402701018076044
+Classification Accuracy on loaded model = 0.9402701018076044
